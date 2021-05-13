@@ -8,4 +8,4 @@ Progetto Polveri Sottili svolto da Muscio Alessandro
 
 ## Consegna
 
-Leggi la consegna [qui](.github/CuoriSolitari.pdf)
+Leggi la consegna [qui](.github/PolveriSottili.pdf)
