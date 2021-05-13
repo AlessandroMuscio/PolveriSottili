@@ -1,29 +1,29 @@
 package alessandromuscio.polverisottili;
 
 public class Settimana {
-  private static final double VALORE_SOGLIA_GIORNO = 75;
+  private static final double VALORE_SOGLIA_MASSIMO_SETTIMANALE = 75;
   private static final double VALORE_SOGLIA_MEDIA_SETTIMALE = 50;
   private static final int GIORNI_IN_UNA_SETTIMANA = 7;
   private int anno;
   private static final int MASSIMO_SETTIMANE_IN_ANNO = 53;
-  private static int contatore_settimane = 0;
+  private static int contatore_settimane = 1;
   private int settimana;
   private double[] valori_giornalieri = new double[GIORNI_IN_UNA_SETTIMANA];
 
   public Settimana(int anno, double[] valori_giornalieri) {
     this.anno = anno;
 
+    settimana = contatore_settimane;
     if (contatore_settimane != MASSIMO_SETTIMANE_IN_ANNO)
       contatore_settimane++;
     else
       contatore_settimane = 1;
 
-    settimana = contatore_settimane;
     this.valori_giornalieri = valori_giornalieri;
   }
 
-  public static double getValoreSogliaGiorno() {
-    return VALORE_SOGLIA_GIORNO;
+  public static double getValoreSogliaMassimoSettimanale() {
+    return VALORE_SOGLIA_MASSIMO_SETTIMANALE;
   }
 
   public static double getValoreSogliaMediaSettimale() {
@@ -40,6 +40,10 @@ public class Settimana {
 
   public static int getMassimoSettimaneInAnno() {
     return MASSIMO_SETTIMANE_IN_ANNO;
+  }
+
+  public static int getContatore_settimane() {
+    return contatore_settimane;
   }
 
   public int getSettimana() {
