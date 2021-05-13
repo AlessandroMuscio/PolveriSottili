@@ -5,10 +5,10 @@ public class Settimana {
   private static final double VALORE_SOGLIA_MEDIA_SETTIMALE = 50;
   private static final int GIORNI_IN_UNA_SETTIMANA = 7;
   private int anno;
-  private static final int MASSIMO_SETTIMANE_IN_ANNO = 52;
+  private static final int MASSIMO_SETTIMANE_IN_ANNO = 53;
   private static int contatore_settimane = 0;
   private int settimana;
-  private double[] valori_giornalieri;
+  private double[] valori_giornalieri = new double[GIORNI_IN_UNA_SETTIMANA];
 
   public Settimana(int anno, double[] valori_giornalieri) {
     this.anno = anno;

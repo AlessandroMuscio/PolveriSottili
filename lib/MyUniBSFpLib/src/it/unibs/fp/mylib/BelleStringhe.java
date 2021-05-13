@@ -6,7 +6,7 @@ public class BelleStringhe {
   private final static String CORNICE = "---------------------------------------------------";
   private final static String ACAPO = "\n";
 
-  public static String incornicia(String s) { 
+  public static String incornicia(String s) {
     StringBuffer res = new StringBuffer();
 
     res.append(CORNICE + ACAPO + s + ACAPO + CORNICE + ACAPO);
