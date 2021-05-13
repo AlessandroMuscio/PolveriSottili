@@ -1,10 +1,21 @@
 package alessandromuscio.polverisottili;
 
+import java.util.Date;
+import java.util.Calendar;
+
 import it.unibs.fp.mylib.InputDati;
 
 public class ProgramMenu {
+  private static int anno_corrente = getAnnoCorrente();
   private static Settimana settimana;
   private static boolean cambio_anno = false;
+
+  private static int getAnnoCorrente() {
+    Calendar calendario = Calendar.getInstance();
+    calendario.setTime(new Date());
+
+    return calendario.get(Calendar.YEAR);
+  }
 
   private static int inserimentoAnno() {
     int contatore_settimane = Settimana.getContatore_settimane();
@@ -13,7 +24,7 @@ public class ProgramMenu {
       if (cambio_anno)
         settimana.setAnno(settimana.getAnno() + 1);
       else
-        return InputDati.leggiIntero("Inserisci l'anno da cui partire ad inserire i valori: ");
+        return InputDati.leggiInteroCompreso(OutputStringhe.INSERIMENTO_ANNO, 0, anno_corrente);
     } else {
       cambio_anno = true;
     }
@@ -25,9 +36,8 @@ public class ProgramMenu {
     double[] valori_giornalieri = new double[Settimana.getGiorniInUnaSettimana()];
 
     for (int i = 0; i < Settimana.getGiorniInUnaSettimana(); i++)
-      valori_giornalieri[i] = InputDati
-          .leggiDoubleConMinimo(String.format("Inserisci il valore del giorno numero %d della settimana numero %d: ",
-              (i + 1), Settimana.getContatore_settimane()), 1);
+      valori_giornalieri[i] = InputDati.leggiDoubleConMinimo(
+          String.format(OutputStringhe.INSERIMENTO_VALORE, (i + 1), Settimana.getContatore_settimane()), 1);
 
     return valori_giornalieri;
   }
@@ -56,21 +66,18 @@ public class ProgramMenu {
 
     anno = inserimentoAnno();
     System.out
-        .println(String.format("Stai per inserire i valori di polveri sottili della settimana numero %d dell'anno %d",
-            Settimana.getContatore_settimane(), anno));
+        .println(String.format(OutputStringhe.INFORMAZIONI_GIORNO_SETTIMANA, Settimana.getContatore_settimane(), anno));
 
     valori_giornalieri = inserimentoValori();
 
     settimana = new Settimana(anno, valori_giornalieri);
 
     if (verificaSogliaMassimaSettimanale())
-      System.out.println(String.format(
-          "Attenzione! Un valore della settimana appena inserita ha superato la soglia massima consigliata di polveri sottili di %.2f μg/m^3",
+      System.out.println(String.format(OutputStringhe.MESSAGGIO_SUPERAMENTO_SOGLIA_MASSIMA_GIORNO,
           Settimana.getValoreSogliaMassimoSettimanale()));
 
     if (verificaSogliaMediaSettimanale())
-      System.out.println(String.format(
-          "Attenzione! La media valori della settimana appena inserita ha superato la soglia massima consigliata di polveri sottili di %.2f μg/m^3",
+      System.out.println(String.format(OutputStringhe.MESSAGGIO_SUPERAMENTO_SOGLIA_MEDIA_SETTIMANALE,
           Settimana.getValoreSogliaMediaSettimale()));
   }
 }

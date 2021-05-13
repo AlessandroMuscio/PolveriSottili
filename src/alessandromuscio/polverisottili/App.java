@@ -4,10 +4,10 @@ import it.unibs.fp.mylib.InputDati;
 
 public class App {
   public static void main(String[] args) throws Exception {
-    System.out.println("Benvenuto al programma Polvere Sottili");
+    System.out.println(OutputStringhe.MESSAGGIO_BENVENUTO);
 
     do {
       ProgramMenu.gestioneProgramma();
-    } while (InputDati.leggiSiONo("Vuoi inserire una nuova settimana"));
+    } while (InputDati.leggiSiONo(OutputStringhe.CONTINUAZIONE_INSERIMENTO));
   }
 }
